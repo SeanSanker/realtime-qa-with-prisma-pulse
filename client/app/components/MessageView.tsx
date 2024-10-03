@@ -25,10 +25,10 @@ export function MessageView({ message, onDelete, sendVote }: MessageViewProps) {
         </span>
       </div>
       <div className="float-right">
-        <button className="text-lg" onClick={() => sendVote(-1)}>👎</button>
+        <button className="text-2xl" onClick={() => sendVote(-1)}>👎</button>
         {message.upvotes}
-        <button className="text-lg" onClick={() => sendVote(1)}>👍</button>
-        <button className="text-lg" onClick={onDelete}>✅</button>
+        <button className="text-2xl" onClick={() => sendVote(1)}>👍</button>
+        <button className="text-2xl" onClick={onDelete}>✅</button>
       </div>
       <p className="text-gray-800">{message.text}</p>
     </div>
