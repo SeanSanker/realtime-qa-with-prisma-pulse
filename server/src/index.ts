@@ -13,7 +13,9 @@ const prisma = new PrismaClient().$extends(
 );
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: "*",
+}));
 
 app.get(`/messages`, async (_: Request, res: Response) => {
   const messages = await prisma.message.findMany();
