@@ -64,7 +64,7 @@ io.on(`connection`, async (socket) => {
 });
 
 server.listen(4000, async () => {
-  console.log(`Server running on http://localhost:4000`);
+  console.log(`Server running on http://0.0.0.0:4000`);
   await streamChatMessages(io);
 });
 
