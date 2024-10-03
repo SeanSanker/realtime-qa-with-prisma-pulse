@@ -1,7 +1,8 @@
 import * as socket from "socket.io";
 import { Server } from "socket.io";
 import express, { Request, Response } from "express";
-import http from "http";
+import https from "https";
+import fs from "fs";
 import cors from "cors";
 import { PrismaClient } from "@prisma/client";
 import { withPulse } from "@prisma/extension-pulse";
@@ -22,7 +23,12 @@ app.get(`/messages`, async (_: Request, res: Response) => {
   res.json(messages);
 });
 
-const server = http.createServer(app);
+const httpsOptions = {
+  key: fs.readFileSync('/etc/letsencrypt/live/squiggle.delightful.cc/privkey.pem'),
+  cert: fs.readFileSync('/etc/letsencrypt/live/squiggle.delightful.cc/fullchain.pem')
+};
+
+const server = https.createServer(httpsOptions, app);
 
 const io = new socket.Server(server, {
   cors: { origin: true },
@@ -30,7 +36,7 @@ const io = new socket.Server(server, {
 
 io.on(`connection`, async (socket) => {
   console.log(`User connected: ${socket.id}`);
-
+  
   socket.on(`disconnect`, () => {
     console.log(`User disconnected: ${socket.id}`);
   });
@@ -66,7 +72,7 @@ io.on(`connection`, async (socket) => {
 });
 
 server.listen(4000, async () => {
-  console.log(`Server running on http://0.0.0.0:4000`);
+  console.log(`Server running on https://0.0.0.0:4000`);
   await streamChatMessages(io);
 });
 
