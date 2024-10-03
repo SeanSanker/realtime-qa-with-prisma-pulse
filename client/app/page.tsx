@@ -38,7 +38,7 @@ export default function Home() {
   };
 
   useEffect(() => {
-    const url = `http://squiggle.delightful.cc:4000`;
+    const url = `https://squiggle.delightful.cc:4000`;
 
     async function fetchMessageHistory() {
       const responseData = await fetch(`${url}/messages`);
