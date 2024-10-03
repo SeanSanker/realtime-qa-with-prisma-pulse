@@ -15,7 +15,7 @@ export interface MessageViewProps {
 
 export function MessageView({ message, onDelete, sendVote }: MessageViewProps) {
   return (
-    <div className="mb-4 p-4 border-b border-gray-200 min-h-24">
+    <div className="mb-4 p-4 border-b border-gray-200 min-h-32">
       <div className="flex items-center justify-between mb-1">
         <span className="text-sm font-semibold text-gray-700">
           {message.senderSocketId}
