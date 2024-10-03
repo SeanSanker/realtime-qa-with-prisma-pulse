@@ -53,9 +53,13 @@ io.on(`connection`, async (socket) => {
 
   socket.on(`chat-delete`, async (id) => {
     console.log(`Received deletion: ${id} (${socket.id})`);
-    await prisma.message.delete({
-      where: { id: id },
-    });
+    try {
+      await prisma.message.delete({
+        where: { id: id },
+      });
+    } catch (error) {
+      console.warn('Tried to delete a message that\'s already gone!');
+    }
   });
 
   socket.on(`chat-vote`, async ({ id, vote }) => {
