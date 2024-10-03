@@ -105,7 +105,7 @@ export default function Home() {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             id="message"
-            className="focus:outline-none px-2 flex-1 rounded-xl border border-gray-300"
+            className="focus:outline-none px-2 flex-1 rounded-xl border border-gray-300 text-black"
             type="text"
             placeholder="What do you want to say?"
             autoComplete="off"
